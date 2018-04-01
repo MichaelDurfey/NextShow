@@ -59,7 +59,8 @@ const ensureAuthenticated = (req, res, next) => {
 };
 
 app.get('/auth', ensureAuthenticated, (req, res) => {
-  spotify()
+  // spotify.setAccessToken(req.user.spotifyAccessToken);
+  spotify.getArtists();
   res.render('account.html', { user: req.user });
 });
 

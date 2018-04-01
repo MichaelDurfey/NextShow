@@ -19,6 +19,7 @@ passport.use(new SpotifyStrategy(
   (accessToken, refreshToken, profile, done) => {
     User.findOrCreate(
       { spotifyId: profile.id },
+      { spotifyAccessToken: accessToken },
       (err, userProfile) => {
         userProfile.spotifyAccessToken = accessToken;
         return done(null, userProfile);
