@@ -1,5 +1,14 @@
 const passport = require('passport');
 const SpotifyStrategy = require('passport-spotify').Strategy;
+const User = require('./user');
+
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((obj, done) => {
+  done(null, obj);
+});
 
 passport.use(new SpotifyStrategy(
   {
@@ -8,9 +17,13 @@ passport.use(new SpotifyStrategy(
     callbackURL: 'http://localhost:3000/callback',
   },
   (accessToken, refreshToken, profile, done) => {
-    user.findOrCreate({ spotifyId: profile.id }, (err, userProfile) => {
-      return done(err, userProfile);
-    });
+    User.findOrCreate(
+      { spotifyId: profile.id },
+      (err, userProfile) => {
+        userProfile.spotifyAccessToken = accessToken;
+        return done(null, userProfile);
+      },
+    );
   },
 ));
 
