@@ -52,6 +52,14 @@ body {
   margin-bottom: 30px;
 }
 
+.eventContainer {
+  border: solid;
+  border-width: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .artistsList {
   display: flex;
   align-items: center;

@@ -10,6 +10,7 @@ import moment from 'moment';
 // jqnvutx6q685yj77jeuv4t9n
 
 const getEvents = (artists, cb) => {
+  console.log('getEvents');
   const startDate = moment(new Date()).format('YYYY-MM-DD');
   const endDate = moment(new Date()).add(10, 'months').format('YYYY-MM-DD');
   let artistIds = artists.slice().map((artist) => {
@@ -21,7 +22,7 @@ const getEvents = (artists, cb) => {
         api_key: 'pxxf3h47djt5r9zxzeu9fttd',
       },
     });
-    return axios.get(findArtistId);
+    return Promise.resolve(axios.get(findArtistId));
   });
   return Promise.all([...artistIds])
     .then(result => result.map((i) => {

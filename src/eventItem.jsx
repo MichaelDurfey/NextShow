@@ -4,17 +4,19 @@ import moment from 'moment';
 
 const EventItem = ({ eventItem }) => {
   return (
-    <div>
+    <div className = "eventContainer">
       <div className="venue">
         <h4>Venue:{eventItem.Venue.Name}</h4>
         <h4>Address:{eventItem.Venue.Address} {eventItem.Venue.City}</h4>
       </div>
       <div className="date">
-        Date:{moment(eventItem.Date).format('DD-MM-YYYY')}
+        Date: {moment(eventItem.Date).format('MM-DD-YYYY')}
       </div>
       <div>
-        <a href={eventItem.ticketUrl}>Tickets</a>
+        { eventItem.TicketUrl.length > 0 ? <a href={eventItem.TicketUrl}>Tickets</a> :
+        'no ticket url provided' }
       </div>
+      <div><a href={eventItem.Venue.Url}>Website: {eventItem.Venue.Name}</a></div>
     </div>
   );
 };
