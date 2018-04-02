@@ -1,46 +1,13 @@
 import React from 'react';
-import axios from 'axios';
+import { Container, Row, Button } from 'reactstrap';
 
-class Login extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      username: '',
-      password: '',
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange({ target }) {
-    const { name } = target;
-    this.setState({ [name]: target.value });
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    return axios.get('/auth', { username: this.state.username, password: this.state.password });
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <label>Username:</label>
-          <input type="text" value={this.state.username} onChange={this.handleChange} name="username" /><br />
-        </div>
-        <div>
-          <label>
-            Password:
-            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
-          </label>
-        </div>
-        <div>
-          <input type="submit" value="Submit" />
-        </div>
-      </form>
-    );
-  }
-}
+const Login = () => (
+  <div className="loginText align-middle">
+    <div className="loginChildren">
+      <h1 className="title">NextShow</h1>
+      <Button href="/auth/spotify" color="success">Login with Spotify</Button>
+    </div>
+  </div>
+);
 
 export default Login;

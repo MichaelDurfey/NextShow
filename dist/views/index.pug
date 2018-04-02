@@ -1,0 +1,13 @@
+doctype html
+html(lang="en")
+  head
+    title= NextShow
+    link(rel="stylesheet" type="text/css" href="/styles.css")
+  body
+    div(id="container")
+      div(id="app")
+      script(crossorigin src="https://unpkg.com/react@16/umd/react.development.js").
+      script(crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js").
+      script(src="/bundle.js")
+      script.
+        ReactDOM.render(React.createElement(MyApp, {id: #{id}, spotifyAccessToken: "#{spotifyAccessToken}"}, null), document.getElementById("app"))

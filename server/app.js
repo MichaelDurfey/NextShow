@@ -12,17 +12,11 @@ const app = express();
 const axios = require('axios');
 const path = require('path');
 const db = require('./db/user');
-const swig = require('swig');
-const spotify = require('./spotify');
-
-const consolidate = require('consolidate');
+const spotifyRouter = require('./spotifyRouter');
 
 app.set('views', path.join(__dirname, '../dist/views'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'pug');
 
-app.use(cors());
-
-app.options('*', cors());
 app.use(cookieParser());
 app.use(bodyparser.json());
 app.use(methodOverride());
@@ -36,19 +30,23 @@ app.use(express.static(path.join(__dirname, '../dist')));
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.engine('html', consolidate.swig);
+app.use('/spotify', spotifyRouter);
 
-app.get('/user', (req, res) => {
-  res.render('index.html', { user: req.user });
-})
+app.get('/', (req, res) => {
+  if (!req.user) {
+    res.render('index.pug', { id: 0 , spotifyAccessToken: 0});
+  } else {
+    res.render('index.pug', { id: req.user.spotifyId, spotifyAccessToken: req.user.spotifyAccessToken });
+  }
+});
 
-app.get('/auth/spotify', passport.authenticate('spotify', {showDialog: true}), 
+app.get('/auth/spotify', passport.authenticate('spotify', {scope: ['user-follow-read', 'user-top-read'], showDialog: true }),
 (req, res) => {
 
 });
 
 app.get('/login', (req, res) => {
-  res.render('login.html', { user: req.user });
+  res.render('index.pug', { id: 0, spotifyAccessToken: 0 });
 });
 
 const ensureAuthenticated = (req, res, next) => {
@@ -59,9 +57,8 @@ const ensureAuthenticated = (req, res, next) => {
 };
 
 app.get('/auth', ensureAuthenticated, (req, res) => {
-  // spotify.setAccessToken(req.user.spotifyAccessToken);
-  spotify.getArtists();
-  res.render('account.html', { user: req.user });
+
+  res.render('index.pug', { id: req.user.spotifyId, spotifyAccessToken: req.user.spotifyAccessToken });
 });
 
 app.get(
