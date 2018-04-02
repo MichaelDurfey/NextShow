@@ -55,11 +55,9 @@ class Welcome extends Component {
           <h3>My followed artists</h3>
           { artists.map(a => <Artist artistObj={a} />) }
         </div>
-        <div>
-          <div className="events">
+        <div className="events">
             <h3>Events:</h3>
             { this.state.events.length > 0 ? <Events events={this.state.events} /> : ''}
-          </div>
         </div>
       </div>
     );

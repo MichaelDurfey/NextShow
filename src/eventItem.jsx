@@ -4,10 +4,10 @@ import moment from 'moment';
 
 const EventItem = ({ eventItem }) => {
   return (
-    <div className = "eventContainer">
+    <div className = "eventItem">
       <div className="venue">
-        <h4>Venue:{eventItem.Venue.Name}</h4>
-        <h4>Address:{eventItem.Venue.Address} {eventItem.Venue.City}</h4>
+        <h4 className="venueText">Venue:<br/>{eventItem.Venue.Name}</h4>
+        <h4 className="venueText">Address:<br/>{eventItem.Venue.Address} {eventItem.Venue.City}</h4>
       </div>
       <div className="date">
         Date: {moment(eventItem.Date).format('MM-DD-YYYY')}

@@ -3,11 +3,6 @@ const axios = require('axios');
 const buildUrl = require('build-url');
 const Promise = require('bluebird');
 import moment from 'moment';
-// http://api.jambase.com/artists?name=ed+sheeran&page=0&api_key=vny3gbaak9jfvc7ddsrqhgtv
-
-// http://api.jambase.com/events?artistId=2698&zipCode=95128&radius=50&page=0&api_key=vny3gbaak9jfvc7ddsrqhgtv
-// pxxf3h47djt5r9zxzeu9fttd
-// jqnvutx6q685yj77jeuv4t9n
 
 const getEvents = (artists, cb) => {
   console.log('getEvents');

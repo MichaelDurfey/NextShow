@@ -21,7 +21,7 @@ const getArtists = () => (
 );
 
 const getFollowedArtists = () => (
-  spotifyApi.getFollowedArtists({ limit: 10 })
+  spotifyApi.getFollowedArtists({ limit: 2 })
 );
 
 const getUser = () => (
