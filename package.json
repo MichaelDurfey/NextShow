@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack -d --watch",
-    "start": "webpack -p && node server/app.js"
+    "buildp": "webpack -p",
+    "start": "npm run build | node server/app.js"
   },
   "repository": {
     "type": "git",
