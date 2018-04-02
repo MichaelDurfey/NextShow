@@ -40,10 +40,15 @@ app.get('/', (req, res) => {
   }
 });
 
-app.get('/auth/spotify', passport.authenticate('spotify', {scope: ['user-follow-read', 'user-top-read'], showDialog: true }),
-(req, res) => {
+app.get(
+  '/auth/spotify', passport.authenticate(
+    'spotify',
+    { scope: ['user-follow-read', 'user-top-read'], showDialog: true },
+  ),
+  () => {
 
-});
+  },
+);
 
 app.get('/login', (req, res) => {
   res.render('index.pug', { id: 0, spotifyAccessToken: 0 });

@@ -1,7 +1,6 @@
 const SpotifyWebApi = require('spotify-web-api-node');
 const axios = require('axios');
 
-const scopes = ['user-follow-read', 'user-top-read']
 const spotifyApi = new SpotifyWebApi({
   clientId: `'${process.env.SPOTIFYCLIENTID}'`,
   clientSecret: `'${process.env.SPOTIFYSECRET}'`,
@@ -15,10 +14,10 @@ const setAccessToken = (token) => {
 const getArtists = () => (
   spotifyApi.getUserPlaylists()
     .then((data) => {
-      data.body.items.forEach(item => console.log(item));
+      data.body.items.forEach(item => item);
     })
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
+    .then(data => data)
+    .catch(err => err)
 );
 
 const getFollowedArtists = () => (

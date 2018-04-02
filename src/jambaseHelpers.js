@@ -6,6 +6,8 @@ import moment from 'moment';
 // http://api.jambase.com/artists?name=ed+sheeran&page=0&api_key=vny3gbaak9jfvc7ddsrqhgtv
 
 // http://api.jambase.com/events?artistId=2698&zipCode=95128&radius=50&page=0&api_key=vny3gbaak9jfvc7ddsrqhgtv
+// pxxf3h47djt5r9zxzeu9fttd
+// jqnvutx6q685yj77jeuv4t9n
 
 const getEvents = (artists, cb) => {
   const startDate = moment(new Date()).format('YYYY-MM-DD');
@@ -16,7 +18,7 @@ const getEvents = (artists, cb) => {
       queryParams: {
         name: artist.name,
         page: 0,
-        api_key: 'jqnvutx6q685yj77jeuv4t9n',
+        api_key: 'pxxf3h47djt5r9zxzeu9fttd',
       },
     });
     return axios.get(findArtistId);
@@ -28,7 +30,7 @@ const getEvents = (artists, cb) => {
         queryParams: {
           artistId: i.data.Artists[0].Id,
           page: 0,
-          api_key: 'jqnvutx6q685yj77jeuv4t9n',
+          api_key: 'pxxf3h47djt5r9zxzeu9fttd',
           zipCode: 94118,
           radius: 50,
           startDate,
