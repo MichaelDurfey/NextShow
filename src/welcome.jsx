@@ -10,7 +10,6 @@ class Welcome extends Component {
     super(props);
     this.state = {
       events: [],
-      artists: [],
     };
   }
 
@@ -19,8 +18,14 @@ class Welcome extends Component {
   }
 
   getEvents(artists) {
-    jambase.getEvents(artists, (err, result) => {
-      console.log(result);
+    return jambase.getEvents(artists, (err, result) => {
+      if (err) {
+        throw new Error(err);
+      } else {
+        this.setState({
+          events: result[0].data.Events,
+        });
+      }
     });
   }
 
@@ -51,7 +56,7 @@ class Welcome extends Component {
         <div>
           <div className="events">
             <h3>Events:</h3>
-            { this.state.events.length > 0 ? <Events events={this.state.events} /> : 'No events found' }
+            { this.state.events.length > 0 ? <Events events={this.state.events} /> : ''}
           </div>
         </div>
       </div>
