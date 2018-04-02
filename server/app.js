@@ -45,9 +45,7 @@ app.get(
     'spotify',
     { scope: ['user-follow-read', 'user-top-read'], showDialog: true },
   ),
-  () => {
-
-  },
+  () => {},
 );
 
 app.get('/login', (req, res) => {

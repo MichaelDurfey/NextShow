@@ -5,7 +5,7 @@ const Promise = require('bluebird');
 import moment from 'moment';
 
 const getEvents = (artists, cb) => {
-  console.log('getEvents');
+  console.log(process.env.JAMBASEAPI);
   const startDate = moment(new Date()).format('YYYY-MM-DD');
   const endDate = moment(new Date()).add(10, 'months').format('YYYY-MM-DD');
   let artistIds = artists.slice().map((artist) => {

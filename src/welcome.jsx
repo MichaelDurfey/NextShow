@@ -18,7 +18,6 @@ class Welcome extends Component {
   }
 
   getEvents(artists) {
-    console.log('getting events!!', artists)
     jambase.getEvents(artists, (err, result) => {
       if (err) {
         throw new Error(err);
@@ -30,12 +29,6 @@ class Welcome extends Component {
       }
     });
   }
-
-  // updateEvents(events) {
-  //   this.setState({
-  //     events,
-  //   });
-  // }
 
   render() {
     const {

@@ -5,9 +5,10 @@ import moment from 'moment';
 const EventItem = ({ eventItem }) => {
   return (
     <div className = "eventItem">
+      <p>{eventItem.Artists[0].name}</p>
       <div className="venue">
-        <h4 className="venueText">Venue:<br/>{eventItem.Venue.Name}</h4>
-        <h4 className="venueText">Address:<br/>{eventItem.Venue.Address} {eventItem.Venue.City}</h4>
+        <p className="venueText">Venue:<br/>{eventItem.Venue.Name}</p>
+        <p className="venueText">Address:<br/>{eventItem.Venue.Address} {eventItem.Venue.City}</p>
       </div>
       <div className="date">
         Date: {moment(eventItem.Date).format('MM-DD-YYYY')}
