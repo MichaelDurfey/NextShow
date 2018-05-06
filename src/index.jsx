@@ -11,13 +11,13 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      display_name: "",
+      display_name: '',
       spotifyId: 0,
       image: '',
       artists: [],
       events: [],
-    }
-  };
+    };
+  }
 
   componentDidMount() {
     if (this.props.id !== 0) {
@@ -26,7 +26,7 @@ class App extends Component {
     }
   }
 
-  getState(id) {
+  getState() {
     return Promise.all([getUser(), getFollowedArtists()])
       .then((data) => {
         const user = data[0].body;

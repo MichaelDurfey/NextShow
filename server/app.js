@@ -7,11 +7,8 @@ const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
 const session = require('express-session');
 
-const cors = require('cors');
 const app = express();
-const axios = require('axios');
 const path = require('path');
-const db = require('./db/user');
 const spotifyRouter = require('./spotifyRouter');
 
 app.set('views', path.join(__dirname, '../dist/views'));
@@ -34,7 +31,7 @@ app.use('/spotify', spotifyRouter);
 
 app.get('/', (req, res) => {
   if (!req.user) {
-    res.render('index.pug', { id: 0 , spotifyAccessToken: 0});
+    res.render('index.pug', { id: 0, spotifyAccessToken: 0 });
   } else {
     res.render('index.pug', { id: req.user.spotifyId, spotifyAccessToken: req.user.spotifyAccessToken });
   }

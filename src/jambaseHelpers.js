@@ -1,20 +1,20 @@
+import moment from 'moment';
+
 require('dotenv').config();
 const axios = require('axios');
 const buildUrl = require('build-url');
 const Promise = require('bluebird');
-import moment from 'moment';
 
 const getEvents = (artists, cb) => {
-  console.log(process.env.JAMBASEAPI);
   const startDate = moment(new Date()).format('YYYY-MM-DD');
   const endDate = moment(new Date()).add(10, 'months').format('YYYY-MM-DD');
-  let artistIds = artists.slice().map((artist) => {
+  const artistIds = artists.slice().map((artist) => {
     const findArtistId = buildUrl('http://api.jambase.com', {
       path: 'artists',
       queryParams: {
         name: artist.name,
         page: 0,
-        api_key: 'pxxf3h47djt5r9zxzeu9fttd',
+        api_key: process.env.JAMBASEAPI,
       },
     });
     return Promise.resolve(axios.get(findArtistId));
@@ -26,7 +26,7 @@ const getEvents = (artists, cb) => {
         queryParams: {
           artistId: i.data.Artists[0].Id,
           page: 0,
-          api_key: 'pxxf3h47djt5r9zxzeu9fttd',
+          api_key: process.env.JAMBASEAPI,
           zipCode: 94118,
           radius: 50,
           startDate,
