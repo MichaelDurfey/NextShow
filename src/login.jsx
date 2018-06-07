@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Button } from 'reactstrap';
+import { Button } from 'reactstrap';
 
 const Login = () => (
   <div className="loginText align-middle">

@@ -1,7 +1,5 @@
 const SpotifyWebApi = require('spotify-web-api-node');
-const axios = require('axios');
 
-const callbackUrl = 'http://localhost:3000/callback'
 const spotifyApi = new SpotifyWebApi({
   clientId: `'${process.env.SPOTIFYCLIENTID}'`,
   clientSecret: `'${process.env.SPOTIFYSECRET}'`,
